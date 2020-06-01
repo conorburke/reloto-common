@@ -23,7 +23,7 @@ export const currentUser = (req: Request, res: Response, next: NextFunction) => 
         const payload = jwt.verify(req.session.jwt, process.env.RELOTO_JWT_KEY!) as UserPayload;
         req.currentUser = payload;
     } catch(err) {
-
+        console.error('Error with current user', err);
     }
 
     next();
