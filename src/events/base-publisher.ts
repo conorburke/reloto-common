@@ -1,11 +1,7 @@
 import { Stan } from 'node-nats-streaming';
 
 import { Subjects } from './subjects';
-
-interface Event {
-    subject: Subjects;
-    data: any;
-}
+import { Event } from './event';
 
 export abstract class Publisher<T extends Event> {
     abstract subject: T['subject'];
@@ -24,7 +20,7 @@ export abstract class Publisher<T extends Event> {
                     return reject(err);
                 }
 
-                console.log('Event published');
+                console.log(`Event published: ${this.subject}`);
                 resolve();
             });
         })
